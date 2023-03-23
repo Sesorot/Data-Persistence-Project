@@ -13,12 +13,16 @@ public class DataFlow : MonoBehaviour
     public string bestPlayer;
     public int maxScore;
 
+    public List<string> listOfBestPlayers;
+    private int bestScoresMaxCount = 5;
+
     [System.Serializable]
     class Data
     {
         public string currentPlayer;
         public string bestPlayerName;
         public int maxScore;
+        public List<string> bestPlayers;
     }
 
     private void Awake()
@@ -31,6 +35,14 @@ public class DataFlow : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        if (listOfBestPlayers == null)
+        {
+            listOfBestPlayers = new(); 
+        }
+        else
+        {
+            Debug.Log("Local list is not null");
+        }
         LoadData();
     }
 
@@ -39,8 +51,22 @@ public class DataFlow : MonoBehaviour
         Data data = new();
 
         data.currentPlayer = playerName;
-        data.bestPlayerName = data.currentPlayer;
+        data.bestPlayerName = bestPlayer;
         data.maxScore = maxScore;
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            data.bestPlayerName = data.currentPlayer;
+
+            string newBestPlayer = playerName + " : " + maxScore;
+            if (listOfBestPlayers.Count >= bestScoresMaxCount)
+            {
+                listOfBestPlayers.RemoveAt(0);
+            }
+            listOfBestPlayers.Add(newBestPlayer); 
+        }
+
+        data.bestPlayers = listOfBestPlayers;
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/saveDataBakana.json", json);
@@ -57,6 +83,7 @@ public class DataFlow : MonoBehaviour
             playerName = data.currentPlayer;
             bestPlayer = data.bestPlayerName;
             maxScore = data.maxScore;
+            listOfBestPlayers = data.bestPlayers;
         }
     }
 }
