@@ -16,6 +16,9 @@ public class DataFlow : MonoBehaviour
     public List<string> listOfBestPlayers;
     private int bestScoresMaxCount = 5;
 
+    public Color trailColorInGame;
+    public MeshFilter meshInGame;
+
     [System.Serializable]
     class Data
     {
@@ -23,6 +26,8 @@ public class DataFlow : MonoBehaviour
         public string bestPlayerName;
         public int maxScore;
         public List<string> bestPlayers;
+        public Color trailColor;
+        public MeshFilter mesh;
     }
 
     private void Awake()
@@ -53,6 +58,8 @@ public class DataFlow : MonoBehaviour
         data.currentPlayer = playerName;
         data.bestPlayerName = bestPlayer;
         data.maxScore = maxScore;
+        data.trailColor = trailColorInGame;
+        data.mesh = meshInGame;
 
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
@@ -84,6 +91,8 @@ public class DataFlow : MonoBehaviour
             bestPlayer = data.bestPlayerName;
             maxScore = data.maxScore;
             listOfBestPlayers = data.bestPlayers;
+            trailColorInGame = data.trailColor;
+            meshInGame = data.mesh;
         }
     }
 }

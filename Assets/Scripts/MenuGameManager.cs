@@ -47,6 +47,11 @@ public class MenuGameManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void SettingsMenu()
+    {
+        SceneManager.LoadScene(3);
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene(1);

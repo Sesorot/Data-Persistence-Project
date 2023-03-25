@@ -9,6 +9,7 @@ public class MainManager : MonoBehaviour
     public Brick BrickPrefab;
     public int LineCount = 6;
     public Rigidbody Ball;
+    public GameObject ballGO;
 
     public Text ScoreText;
     public Text bestScoreText;
@@ -90,6 +91,8 @@ public class MainManager : MonoBehaviour
         data.LoadData();
         bestScoreText.text = $"Best Score : {data.bestPlayer} : {data.maxScore}";
         ScoreText.text = $"{data.playerName}'s score : {m_Points}";
+        ballGO.gameObject.GetComponent<TrailRenderer>().material.color = data.trailColorInGame;
+        ballGO.GetComponent<MeshFilter>().sharedMesh = data.meshInGame.sharedMesh;
 
         //DataFlow.Data data = new();
         //currentPlayerName = data.currentPlayer;

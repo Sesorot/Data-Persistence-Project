@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingsManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public ColorPicker colorPicker;
+
+    public void NewColorSelected(Color color)
     {
-        
+        DataFlow.Instance.trailColorInGame = color;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        colorPicker.Init();
+        colorPicker.onColorChanged += NewColorSelected;
+        colorPicker.SelectColor(DataFlow.Instance.trailColorInGame);
+    }
+
+    public void BackToMenu()
+    {
+        DataFlow.Instance.SaveData();
+        SceneManager.LoadScene(0);
     }
 }
