@@ -4,12 +4,19 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class MenuGameManager : MonoBehaviour
 {
+    [Header("Main Menu Settings")]
     [SerializeField] TMP_Text helloText;
     [SerializeField] TMP_Text nameInput;
     [SerializeField] TMP_Text bestScoreText;
+    [SerializeField] Button startButton;
+
+    [Header("Starter Setting")]
+    [SerializeField] Color startTrailColor;
+    [SerializeField] MeshFilter startMeshForBall;
 
     private void Start()
     {
@@ -33,12 +40,25 @@ public class MenuGameManager : MonoBehaviour
         }
         if (data.playerName != null && data.playerName != "")
         {
+            startButton.gameObject.SetActive(true);
             helloText.gameObject.SetActive(true);
             helloText.text = "Hello, " + data.playerName;
         }
         else
         {
             helloText.gameObject.SetActive(false);
+        }
+
+        if (data.meshInGame == null)
+        {
+            data.meshInGame = startMeshForBall;
+        }
+        Color starterColor;
+        starterColor = Color.black;
+        starterColor.a = 0f;
+        if (data.trailColorInGame == starterColor)
+        {
+            data.trailColorInGame = startTrailColor;
         }
     }
 

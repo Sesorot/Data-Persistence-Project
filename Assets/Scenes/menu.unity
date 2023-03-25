@@ -1890,7 +1890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1327122970
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3129,6 +3129,9 @@ MonoBehaviour:
   helloText: {fileID: 1426021247}
   nameInput: {fileID: 919092867}
   bestScoreText: {fileID: 1543269987}
+  startButton: {fileID: 1327122971}
+  startTrailColor: {r: 1, g: 0, b: 0, a: 0}
+  startMeshForBall: {fileID: 1642795231733872264, guid: b9d62edffb7ed7549ad610f981b4ad10, type: 3}
 --- !u!4 &2102973821
 Transform:
   m_ObjectHideFlags: 0

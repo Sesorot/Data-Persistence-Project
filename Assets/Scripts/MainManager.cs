@@ -89,7 +89,14 @@ public class MainManager : MonoBehaviour
     {
         DataFlow data = DataFlow.Instance;
         data.LoadData();
-        bestScoreText.text = $"Best Score : {data.bestPlayer} : {data.maxScore}";
+        if (data.bestPlayer != null && data.bestPlayer != "")
+        {
+            bestScoreText.text = $"Best Score : {data.bestPlayer} : {data.maxScore}"; 
+        }
+        else
+        {
+            bestScoreText.text = "No best score. Be first!";
+        }
         ScoreText.text = $"{data.playerName}'s score : {m_Points}";
         ballGO.gameObject.GetComponent<TrailRenderer>().material.color = data.trailColorInGame;
         ballGO.GetComponent<MeshFilter>().sharedMesh = data.meshInGame.sharedMesh;
